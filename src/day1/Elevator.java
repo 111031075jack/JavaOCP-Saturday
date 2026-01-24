@@ -9,8 +9,10 @@ public class Elevator {
 		
 		System.out.printf("請輸入目前樓層 => ");
 		int current = sc.nextInt();
+		boolean running = true;
 		
-		while(true) {
+		// 給一個變數 迴圈外才可以執行 如果是true是hardcode 就寫死了
+		while(running) {
 		
 			System.out.printf("請輸入目標樓層 => ");
 			int target =  sc.nextInt();
@@ -39,7 +41,7 @@ public class Elevator {
 			current = target;
 		}
 		
-		//sc.close();
+		sc.close();
 		
 	}
 	
