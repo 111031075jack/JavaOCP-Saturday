@@ -21,6 +21,9 @@ public class BMIDemo3 {
 		// 執行邏輯(方法)
 		user2.printBMI();
 		
+		BMIUser user3 = new BMIUser("小華", 175.5, 72.7);
+		user3.printBMI();
+		
 	}
 	
 	

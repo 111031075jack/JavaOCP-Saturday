@@ -23,4 +23,16 @@ public class BMIUser {
 		System.out.printf("bmi: %.2f %n", bmi);
 	}
 	
+	// 空參建構子(預設)
+	public BMIUser() {
+		
+	}
+
+	// 有參建構子
+	public BMIUser(String name, double h, double w) {
+		this.name = name;
+		this.h = h;
+		this.w = w;
+	}
+	
 }
