@@ -22,5 +22,31 @@ public class Student {
 		return scores;
 	}
 	
+	//---------------------------------------------------------------
+	// 共用資源(含有 static)
+	// 印出所有學生的成績(類別方法 不用 new 物件就可以使用, static)
+	public static void printAll(Student[] students) {
+		for(int i=0;i<students.length;i++) {
+			students[i].printScores();
+		}
+	}
+	
+	// 計算全班總分(類別方法 不用 new 物件就可以使用, static)
+	public static int getSum(Student[] students) {
+		int sum = 0;
+		for(int i=0;i<students.length;i++) {
+			sum += students[i].getScores();
+		}
+		return sum;
+	}
+	
+	// 計算全班平均(類別方法, 不用 new 物件就可以使用)
+	public static double getAvg(Student[] students) {
+		int sum = getSum(students);
+		double avg = sum / (double)students.length;
+		return avg;
+	}
+	
+	
 	
 }
