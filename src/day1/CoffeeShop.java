@@ -125,6 +125,6 @@ public class CoffeeShop {
 				System.out.println("正常冰");
 				break;
 		}
-		
+		sc.close();
 	}
 }
