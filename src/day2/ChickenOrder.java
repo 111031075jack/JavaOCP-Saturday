@@ -57,7 +57,7 @@ public class ChickenOrder {
 	public static double getStoreTotal(ChickenOrder[] orders) {
 		double total = 0;
 		for(int i=0;i<orders.length;i++) {
-			total +=  orders[i].getTotal();
+			total += orders[i].getTotal();
 		}
 		return total;
 	}
