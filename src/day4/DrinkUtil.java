@@ -1,17 +1,16 @@
 package day4;
 
-public class TestSplit {
+// 處理飲料相關工作
+public class DrinkUtil {
 
-	public static void main(String[] args) {
-		System.out.println("測試資料");
-		System.out.println("==========================");
-		
-		// "1, 3x2" 
-		// 1號x1杯
-		// 3號x2杯
-		
-		String input = "1, 3x2, 5x3, 7x4, 2x5";
+	/*
+	 * 解析訂單字串
+	 * "1, 3x2" -> [1號x1杯, 3號x2杯] -> OrderItem[]
+	 */
+	public static OrderItem[] inputParseAndGetOrderItems(String input) {
 		String[] inputArray = input.split(","); // ["1", "3x2"]
+		OrderItem[] oItems = new OrderItem[inputArray.length]; // inputArray.length = 2 
+		int i=0; // oItems 起始要放的位置
 		
 		for(String item : inputArray) {
 			item = item.trim();
@@ -38,17 +37,12 @@ public class TestSplit {
 				System.out.println("查無商品\n");
 				continue;
 			}
+			// 建立訂單
 			OrderItem oItem = new OrderItem(drink, qty);
-			// 列印訂單資料
-			System.out.printf("品名:%s 單價: %d 數量: %d 小計: %d%n",
-					oItem.getDrink().getName(),
-					oItem.getDrink().getPrice(),
-					oItem.getQuantity(),
-					oItem.getTotalPrice());
-			System.out.println();
-			
+			oItems[i] = oItem; // 將 orderItem 放到 oItems 陣列中 
+			i++; // 很重要
 		}
-		
-	}
+		return oItems;
 	
+	}
 }
