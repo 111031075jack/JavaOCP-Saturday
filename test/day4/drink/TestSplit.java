@@ -1,4 +1,8 @@
-package day4;
+package day4.drink;
+
+import day4.drink.Drink;
+import day4.drink.DrinkMenu;
+import day4.drink.OrderItem;
 
 public class TestSplit {
 

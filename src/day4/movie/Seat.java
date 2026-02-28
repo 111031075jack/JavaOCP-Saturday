@@ -1,0 +1,38 @@
+package day4.movie;
+
+// 單一座位
+public class Seat {
+	
+	// 物件屬性
+	private Hall hall; // 所屬電影廳
+	private int row; // 4 第四排
+	private int price; // 價格/張
+	
+	public Seat(Hall hall, int row, int price) {
+		this.hall = hall;
+		this.row = row;
+		this.price = price;
+	}
+
+	public Hall getHall() {
+		return hall;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+	
+	// 呈現座位資料
+	public String displayName() {
+		return String.format("%s %s廳 %d排 $%d%n",
+							hall.getMovie().getTitle(),
+							hall.getName(),
+							row,
+							price);
+	}
+	
+}

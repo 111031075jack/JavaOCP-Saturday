@@ -1,4 +1,7 @@
-package day4;
+package day4.drink;
+
+import day4.drink.DrinkUtil;
+import day4.drink.OrderItem;
 
 public class TestDrinkUtil {
 
