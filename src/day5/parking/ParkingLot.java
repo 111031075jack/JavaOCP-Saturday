@@ -61,11 +61,18 @@ public class ParkingLot {
 		// 找空位
 		int spaceNumber = findEmptySpace();
 		
-		// 判斷
+		// 判斷是否有空位
 		if(spaceNumber == -1) {
 			System.out.println("停車場已滿");
 			return false;
 		}
+		
+		// 檢查是否重複車牌
+		if(existCar(vehicle.getPlateNumber())) {
+			System.out.printf("停車失敗 -> 車牌已存在: %s%n", vehicle.getPlateNumber());
+			return false;
+		}
+		
 		
 		// 建立停車紀錄
 		ParkingRecord record = new ParkingRecord(vehicle, spaceNumber, ratePerSecond);
@@ -98,6 +105,20 @@ public class ParkingLot {
 		}
 		System.out.printf("無此車號 -> 取車失敗:%s%n", plateNumber);
 		return;
+	}
+	
+	// 檢查車牌是否已在停車場
+	public boolean existCar(String plateNumber) {
+		for(ParkingRecord record : spaces) {
+			if(record == null) {
+				continue;
+			}
+			// 比對車牌
+			if(record.getVehicle().getPlateNumber().equals(plateNumber)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
