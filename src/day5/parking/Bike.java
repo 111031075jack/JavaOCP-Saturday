@@ -3,6 +3,15 @@ package day5.parking;
 // 機車
 public class Bike extends Vehicle{
 	private boolean isElectric; // 是否是電動車
+	
+	public Bike() {
+
+	}
+
+	public Bike(boolean isElectric, String plateNumber) {
+		this.setElectric(isElectric);
+		this.setPlateNumber(plateNumber);
+	}
 
 	public boolean isElectric() {
 		return isElectric;
@@ -12,6 +21,9 @@ public class Bike extends Vehicle{
 		this.isElectric = isElectric;
 	}
 	
-	
+	public String toString() {
+		return String.format("機車車牌: %s 電動車: %b", 
+				this.getPlateNumber(), this.isElectric());
+	}
 
 }

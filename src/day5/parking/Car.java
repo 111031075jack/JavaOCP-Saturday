@@ -2,15 +2,31 @@ package day5.parking;
 
 // 汽車
 public class Car extends Vehicle{
-	private int seat; // 座位數
+	private int seats; // 座位數
 
-	public int getSeat() {
-		return seat;
+	public Car() {
+		
+	}
+	
+	public Car(int seats, String plateNumber) {
+		this.setSeats(seats);
+		this.setPlateNumber(plateNumber);
+	}
+	
+	public int getSeats() {
+		return seats;
 	}
 
-	public void setSeat(int seat) {
-		this.seat = seat;
+	public void setSeats(int seats) {
+		this.seats = seats;
 	}
+	
+
+	public String toString() {
+		return String.format("汽車車牌: %s 座位數: %d", 
+				this.getPlateNumber(), this.getSeats());
+	}
+	
 	
 	
 }
