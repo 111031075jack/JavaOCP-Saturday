@@ -11,6 +11,27 @@ public class ParkingLot {
 		spaces = new ParkingRecord[lots];
 	}
 	
+	// 顯示停車場空位資訊
+	public void showParkingLot() {
+		System.out.println("\n===== 停車場狀況 =====");
+		// 顯示車格編號
+		System.out.print("車格: ");
+		for(int i=0;i<spaces.length;i++) {
+			System.out.printf("%-4d", i);
+		}
+		System.out.println();
+		System.out.println("    --------------------------------------");
+		// 顯示是否有車
+		System.out.print("狀態: ");
+		for(int i=0;i<spaces.length;i++) {
+			System.out.printf("%-4s", spaces[i]==null ? "" : "V");
+		}
+		System.out.println();
+		System.out.println("(V = 有車, 空白 = 空位)");
+		System.out.println();
+	}
+	
+	
 	// 找空位
 	// 若有找到會回傳 0~n 的任一值
 	// 沒有空位則回傳 -1
@@ -42,6 +63,29 @@ public class ParkingLot {
 		System.out.printf("停車成功 -> 停車紀錄 -> %s%n", record);
 		
 		return true;
+	}
+	
+	// 取車繳費
+	public void removeCar(String plateNumber) {
+		for(int i=0;i<spaces.length;i++) {
+			ParkingRecord record = spaces[i];
+			if(record == null) {
+				continue;
+			}
+			
+			// 從停車紀錄中取出車輛
+			Vehicle vehicle = record.getVehicle();
+			// 比對 plateNumber
+			if(vehicle.getPlateNumber().equals(plateNumber)) {
+				System.out.println("取車成功:");
+				record.showInfo(); // 顯示停車相關資訊與費用
+				// 將空位釋出
+				spaces[i] = null;
+				return;
+			}
+		}
+		System.out.printf("無此車號 -> 取車失敗:%s%n", plateNumber);
+		return;
 	}
 	
 }
