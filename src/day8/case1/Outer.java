@@ -22,4 +22,54 @@ public class Outer {
 		
 	}
 	
+	// 物件方法
+	public void service(int hours) {
+		
+		int rate = 30; // 每小時 30 元
+		
+		// 方法內部類別
+		class Parking{
+			int calculateFee() {
+				return rate * hours;
+			}
+			
+			void printBill() {
+				System.out.printf("停車時數: %d%n", hours);
+				System.out.printf("每小時費用: %d%n", rate);
+				System.out.printf("總費用: %d%n", calculateFee());		
+			}
+			
+		}
+		
+		// 使用方法內部類別
+		Parking parking = new Parking();
+		parking.printBill();
+		
+	}
+	
+	// interface 介面 - VIP 折扣計算
+	interface VIPCalculator{
+		int calculate(int h, int r);
+	}
+	
+	public void vipService(int hours) {
+		
+		int rate = 30;
+		
+		// 匿名內部類別 - 實現 VIP 折扣計算
+		VIPCalculator vip = new VIPCalculator() {
+			@Override
+			public int calculate(int h, int r) {
+				// VIP 8 小時以內免費, 超過 8 小時每小時半價
+				if(h <= 8) {
+					return 0; // 8 小時以內免費
+				}
+					int extraHours = h - 8;
+					return (int)(extraHours * r * 0.5); // 超過 8 小時每小時半價
+				
+			}
+		};
+		int fee = vip.calculate(hours, rate);
+		System.out.printf("VIP 停車時數: %d 小時, 費用: %d 元%n", hours, fee);
+	}
 }

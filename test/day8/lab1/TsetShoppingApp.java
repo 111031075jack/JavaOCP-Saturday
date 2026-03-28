@@ -7,6 +7,7 @@ public class TsetShoppingApp {
 		ShoppingApp.User user = app.new User("John");
 		user.show();
 		
+		app.checkout(100);
 		
 	}
 	
