@@ -1,5 +1,6 @@
 package day9;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,9 +26,58 @@ public class SetDemo6 {
 		students.add(new Student("Alice", 85, 2, 20));
 		
 		System.out.println("個數: " + students.size());
+		
+		// 印出學生資料(傳統寫法)
+		for(Student student : students) {
+			System.out.println(student);
+		}
+		
+		// 印出學生資料(新寫法)
 		students.forEach(student -> {
 			System.out.println(student);	
 		});
+		
+		// 印出學生資料(新寫法 + :: = 極簡寫法)
+		students.forEach(System.out::println);
+		
+		// 印出分數
+		students.forEach(student ->{
+			System.out.println(student.getScore());
+		});
+		
+		// 請計算總分 = ?
+		int sum = students.stream() // student 物件串流
+				.mapToInt(student -> student.getScore()) // score 串流
+				.sum();
+		System.out.println("總分: "+sum);
+		
+		// 請計算平均 = ?
+		double avg = students.stream()
+							.mapToDouble(student -> student.getScore())
+							.average()
+							.orElse(0);
+		System.out.println("平均: " + avg);
+		
+		// 最高分 = ?
+		int max = students.stream().mapToInt(student -> student.getScore()).max().orElse(0);
+		System.out.println("最高分: " + max);
+		
+		// 最低分 = ?
+		int min = students.stream().mapToInt(student -> student.getScore()).min().orElse(0);
+		System.out.println("最高分: " + min);
+		
+		// 最高分的是誰 ?
+		Student highStudent = students.stream()
+									  .max(Comparator.comparing(Student :: getScore))
+									  .orElse(null);
+		System.out.println("最高分的人是: " + highStudent);
+		
+		// 最低分的是誰 ?
+		Student lowStudent = students.stream()
+									 .min(Comparator.comparing(Student :: getScore))
+									 .orElse(null);
+		System.out.println("最低分的人是: " + lowStudent.getName());
+		
 		
 	}
 	
