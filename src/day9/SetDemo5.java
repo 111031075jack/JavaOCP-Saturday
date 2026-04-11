@@ -1,0 +1,45 @@
+package day9;
+
+import java.util.Set;
+
+public class SetDemo5 {
+
+	public static void main(String[] args) {
+		// 集合內容分析
+		Set set1 = Set.of(100, 73, 80);
+		System.out.println(set1);
+		// 輪巡元素並印出
+		for(Object data : set1) {
+			System.out.println(data);
+		}
+		// 輪巡元素並加總(加總錢必須要做轉換 Object -> Integer -> int)
+		// 沒有使用泛型技術也沒有 autoUnboxing 技術情況下
+		int sum1 = 0;
+		for(Object data : set1) {
+			Integer d1 = (Integer)data; // Object ->  Integer 
+			int     d2 = d1.intValue(); // Integer -> int
+			sum1 += d2;
+		}
+		System.out.println("總和: " + sum1);
+		
+		// 使用泛型技術 + autoUnboxing 技術情況下
+		Set<Integer> set2 = Set.of(100, 73, 80);
+		int sum2 = 0;
+		for(Integer data : set2) { // <Integer> 泛型
+			sum2 += data; // autoUnboxing (會自動將 data 轉 int)
+		}
+		System.out.println("總和: " + sum2);
+		
+		// 使用 Stream 串流技術來簡化程式碼 (高階分析應用)
+		Set<Integer> set3 = Set.of(100, 73, 80);
+		int sum3 = set3.stream()
+					   //.mapToInt(x -> x.intValue())
+					   .mapToInt(x -> x) // 因為有 autoUnboxing 的機制, 所以等於 x -> x.intValue() 
+						//.mapToInt(Integer::intValue)
+					   .sum();
+		System.out.println("總和: " + sum3);
+		
+		
+	}
+	
+}
