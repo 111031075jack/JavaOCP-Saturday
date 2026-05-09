@@ -1,14 +1,15 @@
-package day13.ticket;
+package day13.ticket.sync;
 
 public class TicketSystem {
 
 	private int tickets = 1; // 只有一張票
 	
-	public void buy() throws InterruptedException{
+	public synchronized void buy() throws InterruptedException{
 		String threadName = Thread.currentThread().getName();
 		
 		if(tickets <= 0) {
-			System.out.printf("%s 沒看見票, 離開...", threadName);
+			System.out.printf("%s 沒看見票, 離開...%n", threadName);
+			return;
 		}	
 		
 		System.out.printf("%s 看見有 %d 張票, 準備購買...%n", threadName, tickets);
@@ -19,7 +20,7 @@ public class TicketSystem {
 		// 買票
 		tickets--;
 		
-		System.out.printf("%s 成功買到票!%n", threadName);
+		System.out.printf("%s 成功買到 1 張票!%n", threadName);
 		
 	}
 	
