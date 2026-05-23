@@ -19,7 +19,19 @@ public class Javatest {
 			String strDrawing = drawing.stream().sorted(c2).collect(Collectors.joining(" "));
 			System.out.println(strDrawing);
 			}
-			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	}
 
